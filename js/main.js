@@ -178,20 +178,17 @@ function calculerHebdomadaire() {
         if (durees[i].innerText !== "") {
             let tableau = [];
             tableau = durees[i].innerText.split(":");
-            if (tableau[0].length === 2) {
-                if (tableau[0].indexOf("0") === 0) {
-                    totalHours += Number.parseInt(tableau[0].substring(1));
-                } else {
-                    totalHours += Number.parseInt(tableau[0]);
-                }
+
+            if (tableau[0].indexOf("0") === 0) {
+                totalHours += Number.parseInt(tableau[0].substring(1));
+            } else {
+                totalHours += Number.parseInt(tableau[0]);
             }
 
-            if (tableau[1].length === 2) {
-                if (tableau[1].indexOf("0") === 0) {
-                    totalMinutes += Number.parseInt(tableau[1].substring(1));
-                } else {
-                    totalMinutes += Number.parseInt(tableau[1]);
-                }
+            if (tableau[1].indexOf("0") === 0) {
+                totalMinutes += Number.parseInt(tableau[1].substring(1));
+            } else {
+                totalMinutes += Number.parseInt(tableau[1]);
             }
         }
     }

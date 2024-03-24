@@ -37,7 +37,7 @@ for (let i = 0; i < 6; i++) {
 
 for (let i = 0; i < 6; i++) {
     joursMatinDebut[i].onchange = function () {
-        if (matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i)) {
+        if ((matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i))) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {
@@ -50,7 +50,7 @@ for (let i = 0; i < 6; i++) {
     }
 
     joursMatinFin[i].onchange = function () {
-        if (matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i)) {
+        if ((matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i))) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {
@@ -124,19 +124,27 @@ function dureeAprem(dayOfWeek) {
 }
 
 function matinStartError(dayOfWeek) {
-    return joursMatinDebut[dayOfWeek].value > joursMatinDebut[dayOfWeek].max || joursMatinDebut[dayOfWeek].value < joursMatinDebut[dayOfWeek].min;
+    if (joursMatinDebut[dayOfWeek].valueAsDate != null && joursMatinFin[dayOfWeek].valueAsDate != null) {
+        return joursMatinDebut[dayOfWeek].value > joursMatinDebut[dayOfWeek].max || joursMatinDebut[dayOfWeek].value < joursMatinDebut[dayOfWeek].min;
+    }
 }
 
 function matinEndError(dayOfWeek) {
-    return joursMatinFin[dayOfWeek].value > joursMatinFin[dayOfWeek].max || joursMatinFin[dayOfWeek].value < joursMatinFin[dayOfWeek].min;
+    if (joursMatinDebut[dayOfWeek].valueAsDate != null && joursMatinFin[dayOfWeek].valueAsDate != null) {
+        return joursMatinFin[dayOfWeek].value > joursMatinFin[dayOfWeek].max || joursMatinFin[dayOfWeek].value < joursMatinFin[dayOfWeek].min;
+    }
 }
 
 function apremStartError(dayOfWeek) {
-    return joursApremDebut[dayOfWeek].value > joursApremDebut[dayOfWeek].max || joursApremDebut[dayOfWeek].value < joursApremDebut[dayOfWeek].min;
+    if (joursApremDebut[dayOfWeek].valueAsDate != null && joursApremFin[dayOfWeek].valueAsDate != null) {
+        return joursApremDebut[dayOfWeek].value > joursApremDebut[dayOfWeek].max || joursApremDebut[dayOfWeek].value < joursApremDebut[dayOfWeek].min;
+    }
 }
 
 function apremEndError(dayOfWeek) {
-    return joursApremFin[dayOfWeek].value > joursApremFin[dayOfWeek].max || joursApremFin[dayOfWeek].value < joursApremFin[dayOfWeek].min;
+    if (joursApremDebut[dayOfWeek].valueAsDate != null && joursApremFin[dayOfWeek].valueAsDate != null) {
+        return joursApremFin[dayOfWeek].value > joursApremFin[dayOfWeek].max || joursApremFin[dayOfWeek].value < joursApremFin[dayOfWeek].min;
+    }
 }
 
 function calculerHebdomadaire() {

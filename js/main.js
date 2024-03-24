@@ -2,6 +2,7 @@ let joursMatinDebut = document.getElementsByClassName("jmDebut");
 let joursMatinFin = document.getElementsByClassName("jmFin");
 let joursApremDebut = document.getElementsByClassName("japDebut");
 let joursApremFin = document.getElementsByClassName("japFin");
+let journeesCompletes = document.getElementsByClassName("journeecomplete");
 let durees = document.getElementsByClassName("jd");
 let errorsFields = document.getElementsByClassName("error");
 let totalHoursField = document.getElementById("total");
@@ -33,6 +34,29 @@ validationButton.addEventListener('click', function () {
 
 for (let i = 0; i < 6; i++) {
     errorsFields[i].hidden = true;
+}
+
+for (let i = 0; i < 6; i++) {
+    journeesCompletes[i].onclick = function () {
+        if (journeesCompletes[i].checked) {
+            joursMatinDebut[i].value = joursMatinDebut[i].min;
+            joursMatinFin[i].value = joursMatinFin[i].max;
+            joursApremDebut[i].value = joursApremDebut[i].min;
+            joursApremFin[i].value = joursApremFin[i].max;
+            joursMatinDebut[i].readOnly = true;
+            joursMatinFin[i].readOnly = true;
+            joursApremDebut[i].readOnly = true;
+            joursApremFin[i].readOnly = true;
+            dureeMatin(i);
+            dureeAprem(i);
+            calculerHebdomadaire();
+        } else {
+            joursMatinDebut[i].readOnly = false;
+            joursMatinFin[i].readOnly = false;
+            joursApremDebut[i].readOnly = false;
+            joursApremFin[i].readOnly = false;
+        }
+    }
 }
 
 for (let i = 0; i < 6; i++) {

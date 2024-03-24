@@ -37,7 +37,7 @@ for (let i = 0; i < 6; i++) {
 
 for (let i = 0; i < 6; i++) {
     joursMatinDebut[i].onchange = function () {
-        if ((matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i))) {
+        if (matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i)) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {
@@ -50,7 +50,7 @@ for (let i = 0; i < 6; i++) {
     }
 
     joursMatinFin[i].onchange = function () {
-        if ((matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i))) {
+        if (matinStartError(i) || matinEndError(i) || apremStartError(i) || apremEndError(i)) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {

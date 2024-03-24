@@ -134,7 +134,7 @@ function dureeMatin(dayOfWeek) {
         duree = differenceTimes(joursMatinDebut[dayOfWeek].valueAsDate.getTime(), joursMatinFin[dayOfWeek].valueAsDate.getTime()) + differenceTimes(joursApremDebut[dayOfWeek].valueAsDate.getTime(), joursApremFin[dayOfWeek].valueAsDate.getTime());
     }
     hoursMinutesCalculation(duree);
-    durees[dayOfWeek].innerText = differenceOfHours + ":" + differenceOfMinutes;
+    formatage(dayOfWeek);
 }
 
 function dureeAprem(dayOfWeek) {
@@ -144,7 +144,7 @@ function dureeAprem(dayOfWeek) {
         duree = differenceTimes(joursMatinDebut[dayOfWeek].valueAsDate.getTime(), joursMatinFin[dayOfWeek].valueAsDate.getTime()) + differenceTimes(joursApremDebut[dayOfWeek].valueAsDate.getTime(), joursApremFin[dayOfWeek].valueAsDate.getTime());
     }
     hoursMinutesCalculation(duree);
-    durees[dayOfWeek].innerText = differenceOfHours + ":" + differenceOfMinutes;
+    formatage(dayOfWeek);
 }
 
 function matinStartError(dayOfWeek) {
@@ -178,12 +178,24 @@ function calculerHebdomadaire() {
         if (durees[i].innerText !== "") {
             let tableau = [];
             tableau = durees[i].innerText.split(":");
-            console.log(tableau[0]);
-            console.log(tableau[1]);
-            totalHours += Number.parseInt(tableau[0]);
-            totalMinutes += Number.parseInt(tableau[1]);
+            if (tableau[0].length === 2) {
+                if (tableau[0].indexOf("0") === 0) {
+                    totalHours += Number.parseInt(tableau[0].substring(1));
+                } else {
+                    totalHours += Number.parseInt(tableau[0]);
+                }
+            }
+
+            if (tableau[1].length === 2) {
+                if (tableau[1].indexOf("0") === 0) {
+                    totalMinutes += Number.parseInt(tableau[1].substring(1));
+                } else {
+                    totalMinutes += Number.parseInt(tableau[1]);
+                }
+            }
         }
     }
+
     totalHours = totalHours + (Math.round(totalMinutes / 60));
     totalHoursField.innerText = totalHours;
 
@@ -191,5 +203,17 @@ function calculerHebdomadaire() {
         image.src = "images/bad.jpg";
     } else {
         image.src = "images/good.jpg";
+    }
+}
+
+function formatage(dayOfWeek) {
+    if (differenceOfHours < 10 && differenceOfMinutes < 10) {
+        durees[dayOfWeek].innerText = "0" + differenceOfHours + ":" + "0" + differenceOfMinutes;
+    } else if (differenceOfHours < 10) {
+        durees[dayOfWeek].innerText = "0" + differenceOfHours + ":" + differenceOfMinutes;
+    } else if (differenceOfMinutes < 10) {
+        durees[dayOfWeek].innerText = differenceOfHours + ":" + "0" + differenceOfMinutes;
+    } else {
+        durees[dayOfWeek].innerText = differenceOfHours + ":" + differenceOfMinutes;
     }
 }

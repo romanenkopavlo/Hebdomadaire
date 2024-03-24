@@ -91,8 +91,8 @@ for (let i = 0; i < 6; i++) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {
+            errorsFields[i].hidden = true;
             if (joursApremFin[i].valueAsDate != null) {
-                errorsFields[i].hidden = true;
                 dureeAprem(i);
                 calculerHebdomadaire();
             }
@@ -104,8 +104,8 @@ for (let i = 0; i < 6; i++) {
             errorsFields[i].hidden = false;
             errorsFields[i].innerText = "Inappropriate value!";
         } else {
+            errorsFields[i].hidden = true;
             if (joursApremDebut[i].valueAsDate != null) {
-                errorsFields[i].hidden = true;
                 dureeAprem(i);
                 calculerHebdomadaire();
             }
